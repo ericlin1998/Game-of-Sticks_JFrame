@@ -12,7 +12,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class TEst extends JFrame implements ActionListener {
-
+	JTextField textField;
 	JTextField jtfInput;
 	JTextArea jtAreaOutput;
 	String newline = "\n";
@@ -20,6 +20,9 @@ public class TEst extends JFrame implements ActionListener {
 		createGui();
 	}
 	public void createGui() {
+		textFeild = new JTextField(20);
+		textField.setEditable(false);
+		
 		jtfInput = new JTextField(20);
 		jtfInput.addActionListener(this);
 		jtAreaOutput = new JTextArea(5, 20);
@@ -38,7 +41,11 @@ public class TEst extends JFrame implements ActionListener {
 		gridCons2.weightx = 1.0;
 		gridCons2.weighty = 1.0;
 		gridCons2.fill = GridBagConstraints.BOTH;
+		GridBagConstraints gridCons3 = new GridBagConstraints();
+		gridCons3.gridwidth = GridBagConstraints.REMAINDER;
+		gridCons3.fill = GridBagConstraints.HORIZONTAL;
 		contentPane.add(scrollPane, gridCons2);
+		contentPane.add(textField, gridCons3);
 		contentPane.add(jtfInput, gridCons1);
 	}
 	public void actionPerformed(ActionEvent evt) {
