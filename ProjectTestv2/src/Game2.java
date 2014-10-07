@@ -15,7 +15,7 @@ public class Game2 {
 	//private int games = 0;
 	
 	public Game2(){
-		System.out.println("Initial stick amount:(10-100)");
+		Test2.addText("Initial stick amount:(10-100)");
 		String str = Main.input();
 		numError(str, 10, 100);
 	}
@@ -25,31 +25,31 @@ public class Game2 {
 		while(total>0 && repeat==true){
 			if(player==2){
 				player=1;
-				System.out.println("Remaining:" + total);
-				System.out.println("Player1: How many do you choose?(1-"+ MAX +")");
+				Test2.addText("Remaining:" + total);
+				Test2.addText("Player1: How many do you choose?(1-"+ MAX +")");
 				String str1 = Main.input();
 				inputError(str1,1,MAX);
 			}
 			else{
 				int tempNum = bot.chooseNum(total);
 				bot.updateTemp(total, tempNum);
-				System.out.println("Remaining:" + total);
-				System.out.println("AI chooses " + tempNum + " sticks\n");
+				Test2.addText("Remaining:" + total);
+				Test2.addText("AI chooses " + tempNum + " sticks\n");
 				total = total - tempNum;
 				player=2;
 			}
 		}
 		if(repeat==true){
 			if(player==1){
-				System.out.println("Player" + player + " loses");
+				Test2.addText("Player" + player + " loses");
 				bot.improve();
 			}
 			else{
-				System.out.println("AI loses");
+				Test2.addText("AI loses");
 			}
 			bot.editTemp();
 			//games++;
-			//System.out.println("games: " + games);
+			//Test2.addText("games: " + games);
 			player = 2;
 			restart();
 		}
@@ -63,16 +63,16 @@ public class Game2 {
 				total = num;
 				initial = num;
 				bot = new AI(total,MAX);
-				System.out.println();
+				Test2.addText("");
 				gameStart();
 			}
 			else{
-				System.out.println("error: input int not within range of "+ min + " and " + max);
+				Test2.addText("error: input int not within range of "+ min + " and " + max);
 				numError(Main.input(),min,max);
 			}
 		}
 		else if(Main.checkInput(temp)){
-			System.out.println("error: input not an int");
+			Test2.addText("error: input not an int");
 			numError(Main.input(),min,max);
 		}
 		else{
@@ -85,15 +85,15 @@ public class Game2 {
 			int num = Integer.parseInt(temp);
 			if(num>=min && num<=max){
 				total -= num;
-				System.out.println("Player1 chose " + num + " sticks\n");
+				Test2.addText("Player1 chose " + num + " sticks\n");
 			}
 			else{
-				System.out.println("error: input int not within range of "+ min + " and " + max);
+				Test2.addText("error: input int not within range of "+ min + " and " + max);
 				inputError(Main.input(),min,max);
 			}
 		}
 		else if(checkInput(temp)){
-			System.out.println("error: input not an int");
+			Test2.addText("error: input not an int");
 			inputError(Main.input(),min,max);
 			
 		}
@@ -107,7 +107,7 @@ public class Game2 {
 	}
 	
 	public void restart(){
-		System.out.println("Play again?(0-1)");
+		Test2.addText("Play again?(0-1)");
 		restartError(Main.input(),0,1);
 	}
 	
@@ -116,21 +116,21 @@ public class Game2 {
 			int num2 = Integer.parseInt(num);
 			if(num2>=min && num2<=max){
 				if(num2==0){
-					System.out.println("Game2 ended\n");
+					Test2.addText("Game2 ended\n");
 					repeat = false;
 				}
 				else{
 					total = initial;
-					System.out.println();
+					Test2.addText("");
 				}
 			}
 			else{
-				System.out.println("error: input int not within range of "+ min + " and " + max);
+				Test2.addText("error: input int not within range of "+ min + " and " + max);
 				restartError(Main.input(),min,max);
 			}
 		}
 		else if(Main.checkInput(num)){
-			System.out.println("error: input not an int");
+			Test2.addText("error: input not an int");
 			restartError(Main.input(),min,max);
 		}
 		else{
@@ -140,7 +140,7 @@ public class Game2 {
 	
 	public static boolean checkInput(String str){
 		if(str.toUpperCase().equals("ENDGAME")){
-			System.out.println("Game2 ended\n");
+			Test2.addText("Game2 ended\n");
 			return false;
 		}
 		else{

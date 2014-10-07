@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 public class Test2 extends JFrame implements ActionListener {
 	JTextField textField;
 	JTextField jtfInput;
-	JTextArea jtAreaOutput;
+	static JTextArea jtAreaOutput;
 	String newline = "\n";
 	String text = "";
 	/*
@@ -57,7 +57,7 @@ public class Test2 extends JFrame implements ActionListener {
 		contentPane.add(jtfInput, gridCons1);
 	}
 	
-	public void addText(String str){
+	public static void addText(String str){
 		jtAreaOutput.append(str);
 	}
 	

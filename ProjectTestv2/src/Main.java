@@ -37,11 +37,11 @@ public class Main {
 	}
 	
 	public static void startGame(){
-		Test2.addText("game1 = Player vs Player");
-		System.out.println("game2 = Player vs New AI");
-		System.out.println("game3 = Player vs Normal AI that, from time to time, act retarded");
-		System.out.println("game4 = Player vs Somewhat unbeatable AI");
-		System.out.println("Select game:(1-4)\n");
+		Test2.addText("game1 = Player vs Player\n");
+		Test2.addText("game2 = Player vs New AI\n");
+		Test2.addText("game3 = Player vs Normal AI that, from time to time, act retarded\n");
+		Test2.addText("game4 = Player vs Somewhat unbeatable AI\n");
+		Test2.addText("Select game:(1-4)\n\n");
 		String gameNum = input();
 		gameNumError(gameNum,1,4);
 		if(repeat==true){
@@ -65,7 +65,7 @@ public class Main {
 	}
 	
 	public static void game1(){
-		System.out.println("Game1 chosen");
+		Test2.addText("Game1 chosen/n");
 		Game1 game = new Game1();
 		while(game.getRepeat()){
 			game.gameStart();
@@ -73,7 +73,7 @@ public class Main {
 	}
 	
 	public static void game2(){
-		System.out.println("Game2 chosen");
+		Test2.addText("Game2 chosen/n");
 		Game2 game = new Game2();
 		while(game.getRepeat()){
 			game.gameStart();
@@ -81,7 +81,7 @@ public class Main {
 	}
 	
 	public static void game3(){
-		System.out.println("Game3 chosen");
+		Test2.addText("Game3 chosen/n");
 		Game3 game = new Game3();
 		while(game.getRepeat()){
 			game.gameStart();
@@ -90,13 +90,13 @@ public class Main {
 	
 	public static void game4(){
 		//to be implemented
-		System.out.println("Game4 chosen");
+		Test2.addText("Game4 chosen/n");
 		Game4 game = new Game4();
 		while(game.getRepeat()){
 			game.gameStart();
 		}
 	}
-
+	
 	public static String input(){
 		String gameNum = "";
 		for(int x=0; x<1; x++){
@@ -117,12 +117,12 @@ public class Main {
 				game(num);
 			}
 			else{
-				System.out.println("error: input int not within range of "+ min + " and " + max);
+				Test2.addText("error: input int not within range of "+ min + " and " + max + "/n");
 				gameNumError(input(),min,max);
 			}
 		}
 		else if(checkInput(gameNum)){
-			System.out.println("error: input not an int");
+			Test2.addText("error: input not an int/n");
 			gameNumError(input(),min,max);
 		}
 		else{
@@ -135,17 +135,17 @@ public class Main {
 			int num2 = Integer.parseInt(num);
 			if(num2>=min && num2<=max){
 				if(num2==0){
-					System.out.println("GAME ENDED");
+					Test2.addText("GAME ENDED/n");
 					repeat = false;
 				}
 			}
 			else{
-				System.out.println("error: input int not within range of "+ min + " and " + max);
+				Test2.addText("error: input int not within range of "+ min + " and " + max + "/n");
 				restartError(input(),min,max);
 			}
 		}
 		else if(checkInput(num)){
-			System.out.println("error: input not an int");
+			Test2.addText("error: input not an int/n");
 			restartError(input(),min,max);
 		}
 		else{
@@ -165,7 +165,7 @@ public class Main {
 	
 	public static boolean checkInput(String str){
 		if(str.toUpperCase().equals("ENDGAME")){
-			System.out.println("GAME ENDED");
+			Test2.addText("GAME ENDED/n");
 			return false;
 		}
 		else{
@@ -174,7 +174,7 @@ public class Main {
 	}
 	
 	public static void restart(){
-		System.out.println("Play another game?(0-1)");
+		Test2.addText("Play another game?(0-1)/n");
 		restartError(input(),0,1);
 	}
 }
