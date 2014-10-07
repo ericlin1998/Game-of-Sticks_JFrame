@@ -4,6 +4,8 @@
  * 		Main class
  */
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Scanner;
 
 
@@ -13,8 +15,20 @@ public class Main {
 	static int total;
 	static int num = 5;
 	static final int MIN = 0;
+	static Test2 window;
 	
 	public static void main(String[] args){
+		
+		window = new Test2();
+		window.pack();
+		window.addWindowListener(new WindowAdapter() {
+
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+		window.setVisible(true);
+		
 		do{
 		startGame();
 		}
@@ -23,12 +37,12 @@ public class Main {
 	}
 	
 	public static void startGame(){
-		System.out.println("game1 = Player vs Player");
+		Test2.addText("game1 = Player vs Player");
 		System.out.println("game2 = Player vs New AI");
 		System.out.println("game3 = Player vs Normal AI that, from time to time, act retarded");
 		System.out.println("game4 = Player vs Somewhat unbeatable AI");
-		System.out.println("Select game:(1-4)");
-		String gameNum = console.next();
+		System.out.println("Select game:(1-4)\n");
+		String gameNum = input();
 		gameNumError(gameNum,1,4);
 		if(repeat==true){
 			restart();
@@ -83,6 +97,19 @@ public class Main {
 		}
 	}
 
+	public static String input(){
+		String gameNum = "";
+		for(int x=0; x<1; x++){
+			if(gameNum.length() < 1){
+				gameNum = window.returnText();
+				x--;
+			}
+		}
+		window.jtfInput.setText("");
+		window.textClear();
+		return gameNum;
+	}
+	
 	public static void gameNumError(String gameNum, int min, int max){
 		if(isInteger(gameNum)){
 			int num = Integer.parseInt(gameNum);
@@ -91,12 +118,12 @@ public class Main {
 			}
 			else{
 				System.out.println("error: input int not within range of "+ min + " and " + max);
-				gameNumError(console.next(),min,max);
+				gameNumError(input(),min,max);
 			}
 		}
 		else if(checkInput(gameNum)){
 			System.out.println("error: input not an int");
-			gameNumError(console.next(),min,max);
+			gameNumError(input(),min,max);
 		}
 		else{
 			repeat = false;
@@ -114,12 +141,12 @@ public class Main {
 			}
 			else{
 				System.out.println("error: input int not within range of "+ min + " and " + max);
-				restartError(console.next(),min,max);
+				restartError(input(),min,max);
 			}
 		}
 		else if(checkInput(num)){
 			System.out.println("error: input not an int");
-			restartError(console.next(),min,max);
+			restartError(input(),min,max);
 		}
 		else{
 			repeat = false;
@@ -148,6 +175,6 @@ public class Main {
 	
 	public static void restart(){
 		System.out.println("Play another game?(0-1)");
-		restartError(console.next(),0,1);
+		restartError(input(),0,1);
 	}
 }

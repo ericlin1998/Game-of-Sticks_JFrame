@@ -5,19 +5,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class TEst extends JFrame implements ActionListener {
+public class Test2 extends JFrame implements ActionListener {
 	JTextField textField;
 	JTextField jtfInput;
 	JTextArea jtAreaOutput;
 	String newline = "\n";
 	String text = "";
-	public TEst() {
+	/*
+	boolean repeat= true;
+	Scanner console = new Scanner(System.in);
+	int total;
+	int num = 5;
+	final int MIN = 0;
+	*/
+	public Test2() {
 		createGui();
 	}
 	public void createGui() {
@@ -29,9 +37,7 @@ public class TEst extends JFrame implements ActionListener {
 		jtfInput.addActionListener(this);
 		jtAreaOutput = new JTextArea(5, 20);
 		jtAreaOutput.setEditable(false);
-		JScrollPane scrollPane = new JScrollPane(jtAreaOutput,
-				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		JScrollPane scrollPane = new JScrollPane(jtAreaOutput, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		GridBagLayout gridBag = new GridBagLayout();
 		Container contentPane = getContentPane();
 		contentPane.setLayout(gridBag);
@@ -51,18 +57,24 @@ public class TEst extends JFrame implements ActionListener {
 		contentPane.add(jtfInput, gridCons1);
 	}
 	
-	public void actionPerformed(ActionEvent evt) {
-		text = jtfInput.getText();
-		//jtAreaOutput.append(text + newline);
-		jtfInput.selectAll();
+	public void addText(String str){
+		jtAreaOutput.append(str);
 	}
 	
-	public String getText(){
+	public void actionPerformed(ActionEvent evt) {
+		text = jtfInput.getText();
+	}
+	
+	public String returnText(){
 		return text;
 	}
 	
+	public void textClear(){
+		text = "";
+	}
+	
 	public static void main(String[] args) {
-		TEst jtfTfDemo = new TEst();
+		Test2 jtfTfDemo = new Test2();
 		jtfTfDemo.pack();
 		jtfTfDemo.addWindowListener(new WindowAdapter() {
 
