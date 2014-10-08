@@ -6,16 +6,15 @@
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Scanner;
 
 
 public class Main {
 	static boolean repeat= true;
-	static Scanner console = new Scanner(System.in);
 	static int total;
 	static int num = 5;
 	static final int MIN = 0;
 	static Test2 window;
+	
 	
 	public static void main(String[] args){
 		
@@ -33,7 +32,6 @@ public class Main {
 		startGame();
 		}
 		while(repeat);
-		console.close();
 	}
 	
 	public static void startGame(){
@@ -65,7 +63,7 @@ public class Main {
 	}
 	
 	public static void game1(){
-		Test2.addText("Game1 chosen/n");
+		Test2.addText("Game1 chosen\n");
 		Game1 game = new Game1();
 		while(game.getRepeat()){
 			game.gameStart();
@@ -73,7 +71,7 @@ public class Main {
 	}
 	
 	public static void game2(){
-		Test2.addText("Game2 chosen/n");
+		Test2.addText("Game2 chosen\n");
 		Game2 game = new Game2();
 		while(game.getRepeat()){
 			game.gameStart();
@@ -81,7 +79,7 @@ public class Main {
 	}
 	
 	public static void game3(){
-		Test2.addText("Game3 chosen/n");
+		Test2.addText("Game3 chosen\n");
 		Game3 game = new Game3();
 		while(game.getRepeat()){
 			game.gameStart();
@@ -90,7 +88,7 @@ public class Main {
 	
 	public static void game4(){
 		//to be implemented
-		Test2.addText("Game4 chosen/n");
+		Test2.addText("Game4 chosen\n");
 		Game4 game = new Game4();
 		while(game.getRepeat()){
 			game.gameStart();
@@ -117,12 +115,12 @@ public class Main {
 				game(num);
 			}
 			else{
-				Test2.addText("error: input int not within range of "+ min + " and " + max + "/n");
+				Test2.addText("error: input int not within range of "+ min + " and " + max + "\n");
 				gameNumError(input(),min,max);
 			}
 		}
 		else if(checkInput(gameNum)){
-			Test2.addText("error: input not an int/n");
+			Test2.addText("error: input not an int\n");
 			gameNumError(input(),min,max);
 		}
 		else{
@@ -135,21 +133,27 @@ public class Main {
 			int num2 = Integer.parseInt(num);
 			if(num2>=min && num2<=max){
 				if(num2==0){
-					Test2.addText("GAME ENDED/n");
+					Test2.addText("GAME ENDED");
 					repeat = false;
+					window.setVisible(false);
+					window.dispose();
+					System.exit(0);
 				}
 			}
 			else{
-				Test2.addText("error: input int not within range of "+ min + " and " + max + "/n");
+				Test2.addText("error: input int not within range of "+ min + " and " + max + "\n");
 				restartError(input(),min,max);
 			}
 		}
 		else if(checkInput(num)){
-			Test2.addText("error: input not an int/n");
+			Test2.addText("error: input not an int\n");
 			restartError(input(),min,max);
 		}
 		else{
 			repeat = false;
+			window.setVisible(false);
+			window.dispose();
+			System.exit(0);
 		}
 	}
 	
@@ -165,7 +169,10 @@ public class Main {
 	
 	public static boolean checkInput(String str){
 		if(str.toUpperCase().equals("ENDGAME")){
-			Test2.addText("GAME ENDED/n");
+			Test2.addText("GAME ENDED");
+			window.setVisible(false);
+			window.dispose();
+			System.exit(0);
 			return false;
 		}
 		else{
@@ -174,7 +181,7 @@ public class Main {
 	}
 	
 	public static void restart(){
-		Test2.addText("Play another game?(0-1)/n");
+		Test2.addText("Play another game?(0-1)" + "\n");
 		restartError(input(),0,1);
 	}
 }
