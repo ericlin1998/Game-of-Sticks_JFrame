@@ -121,8 +121,10 @@ public class Game4 {
 						repeat = false;
 					}
 					else{
-						total = initial;
-						Test2.addText("\n");
+						Test2.addText("\nInitial amount randomized:(10-100)\n");
+						total = (int)(Math.random()*91)+10;
+						String str = Integer.toString(total);
+						numError(str, 10, 100);
 					}
 				}
 				else{

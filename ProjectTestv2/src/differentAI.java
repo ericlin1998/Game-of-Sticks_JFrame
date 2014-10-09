@@ -6,14 +6,14 @@
  */
 
 public class differentAI {
-	private int total;
-	private int num;
+	//private int total;
+	//private int num;
 	private int firstNum;
 	private int playerInput = 0;
 	private int MAX;
 	
 	public differentAI(int total){
-		this.total = total;
+		//this.total = total;
 	}
 	
 	public int selectNum(){
